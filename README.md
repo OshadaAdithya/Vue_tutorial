@@ -26,4 +26,19 @@ npm run dev
 
 ```sh
 npm run build
+
+### need to have following dependancies
+
+"dependencies": {
+    "bootstrap": "^5.3.1",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
+  }
+
+### 3 vue components (pages) needed
+HomeView : home page
+AboutView : about page
+ToDo.vue : todo's
+
+###
 ```

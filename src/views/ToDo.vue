@@ -1,17 +1,18 @@
 <template>
-    <div class="set1">
+    
+    <div class="centered-container">
+        <div class="set1">
         
         <img alt="todo" class="todo" src="../assets/todo.png" width="100" height="100" />
         <h1>Task List</h1>
-    </div>
-    <div class="centered-container">
+        </div>
         <div class="d-flex align-items-center justify-content-center">
             <input type="text" placeholder="Type something" class="form-control" v-model="task_item">
             <button @click="submitTask" class="btn btn-primary">Submit</button>
             <button @click="deleteAll" class="btn btn-danger">Clear</button>
         </div>
         <div class="check" v-if="showWarning">
-            <p>Please enter something</p>
+            <p>Please enter something!!!</p>
         
         </div>
         
@@ -19,7 +20,7 @@
         <table class="table table-bordered mt-4">
             <thead>
                 <tr>
-                <th scope="col">id</th>
+                <th scope="col" style="width:60px">id</th>
                 <th scope="col">Task</th>
                 <th scope="col" style="width: 180px;">Status</th>
                 <th scope="col" style="width: 80px;" class="text-center">#</th>
@@ -87,7 +88,7 @@ export default {
                 this.tasks.push({
                     id: this.tasks.length + 1,
                     name:this.task_item,
-                    status:'To-Do',
+                    status:'',
                     editing:false
                 })
                 this.task_item=''
@@ -98,7 +99,7 @@ export default {
         editTask(todo){
             const taskId= this.tasks.indexOf(todo)
             this.tasks[taskId].editing=true  //set editing condition true
-            //this.tasks[id].editing=true  
+            
         },
         saveTask(todo){
             const taskId = this.tasks.indexOf(todo);
@@ -128,16 +129,19 @@ export default {
     text-align: center;
     margin: 0 auto;
     font-style: italic; 
-    font-family: "Lucida Console", "Courier New", monospace;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding-bottom: 15px;
 }
 .centered-container{
-    width: 80%; /* Adjust the width as needed */
+    width: 80%; 
     max-width: 800px;
     margin: 0 auto;
 }
 
 .check{
-    
+  color: red;
+  margin-top: 10px;
 }
+    
+
 </style>

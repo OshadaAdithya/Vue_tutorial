@@ -42,3 +42,14 @@ ToDo.vue : todo's
 
 ###
 ```
+
+### App.vue component based application
+
+first it loads the App.vue with the content of the other components
+define homeView.vue component and set router to the home component through App.vue
+
+---
+
+
+
+

@@ -15,10 +15,30 @@ import { RouterLink, RouterView } from 'vue-router'
       </nav>
     </div> 
   </header>
+  <button @click="redirect">Redirect</button>
+  <button @click="goback">Go Back</button>
+  <button @click="forward">Forward</button>
   
 
   <RouterView />
 </template>
+<script>
+
+export default {
+  methods:{
+    redirect(){
+      this.$router.push({ name: 'home'})
+    },
+    goback(){
+      this.$router.go(-1)
+    },
+    forward(){
+      this.$router.go(1)
+    }
+
+  }
+}
+</script>
 
 <style scoped>
 header {
@@ -64,6 +84,13 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+button{
+  margin: 0 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
 }
 
 /*@media (min-width: 1024px) {

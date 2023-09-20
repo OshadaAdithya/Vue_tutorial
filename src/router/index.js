@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import ToDo from '../views/ToDo.vue'
+import NotFound from '../views/NotFound.vue'
 
 
 const router = createRouter({
@@ -25,6 +26,14 @@ const router = createRouter({
       path: '/todos',
       name: 'todos',
       component: ToDo
+    },
+
+    //catch all not found pages
+    {
+      path: '/:catchAll(.*)',
+      name: 'notfound',
+      component: NotFound
+
     }
   ]
 })

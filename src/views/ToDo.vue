@@ -64,19 +64,61 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
-    data(){
-        return{
-            tasks:[]
-               /*{id: 1,name: 'first task',  status: 'in progress', editing:false},
-               {id: 2,name: 'second task',  status: 'in progress', editing:false}*/
-            ,
-            task_item:'',
-            showWarning:false,
-            statusTypes: ['In-progress', 'Completed', 'To-do']
+    setup(){
+        const tasks= ref([]);
+        const task_item= ref('');
+        const showWarning= ref(false);
+
+        const submitTask=()=>{
+           
+           if (task_item.value.trim() === '') {
+            // If the task_item is empty or contains only spaces
+            showWarning.value = true; // Show the warning message
+            }
+            else{
+                
+                tasks.value.push({
+                    id: tasks.value.length + 1,
+                    name:task_item.value,
+                    status:'',
+                    editing:false
+                })
+                task_item.value=''
+                showWarning.value=false
+            }
+
         }
-    },
-    methods:{
+        const editTask = (todo) => {
+        const taskId = tasks.value.indexOf(todo);
+        if (taskId !== -1) {
+            tasks.value[taskId].editing = true;
+        }
+        }
+
+        const saveTask = (todo) => {
+        const taskId = tasks.value.indexOf(todo);
+        if (taskId !== -1 && todo.name.trim() !== '') {
+            tasks.value[taskId].editing = false;
+        }
+        }
+
+        const deleteTask = (todo) => {
+        const index = tasks.value.indexOf(todo);
+        if (index !== -1) {
+            tasks.value.splice(index, 1);
+        }
+        }
+
+        const deleteAll=() =>{
+            tasks.value=[]
+
+        }
+
+        return{tasks, task_item, showWarning, submitTask, editTask, saveTask, deleteTask, deleteAll}
+    }
+    /*methods:{
         submitTask(){
            // this.tasks.
            if (this.task_item.trim() === '') {
@@ -102,10 +144,12 @@ export default {
             
         },
         saveTask(todo){
+            console.log('test')
             const taskId = this.tasks.indexOf(todo);
-            if (taskId==-1 && todo.name.trim() !== '') {
+            if (taskId!=-1 && todo.name.trim() !== '') {
                 this.tasks[taskId].editing = false;
             }
+            console.log(this.tasks)
 
            
         },
@@ -118,8 +162,8 @@ export default {
         deleteAll(){
             this.tasks=[];
         }
-        }
-    }
+        }*/
+}
 
 
 </script>
